@@ -19,27 +19,27 @@ const userSchema = mongoose.Schema(
     },
     agent_id: {
       type: mongoose.Types.ObjectId,
-      required: true,
+     
       ref: "agent",
     },
     user_id: {
       type: mongoose.Types.ObjectId,
-      required: true,
+     
       ref: "user",
     },
     user_account_id: {
       type: mongoose.Types.ObjectId,
-      required: true,
+     
       ref: "userAccount",
     },
     policy_category_id: {
       type: mongoose.Types.ObjectId,
-      required: true,
+     
       ref: "policyCategory",
     },
     policy_carrier_id: {
       type: mongoose.Types.ObjectId,
-      required: true,
+     
       ref: "policyCarrier",
     },
   },

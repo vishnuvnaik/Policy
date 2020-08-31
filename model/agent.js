@@ -4,7 +4,6 @@ const agentSchema = mongoose.Schema(
   {
     agent: {
       type: String,
-      unique: true,
     },
   },
   {

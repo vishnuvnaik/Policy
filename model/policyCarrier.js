@@ -4,13 +4,12 @@ const policyCarrierSchema = mongoose.Schema(
   {
     company_name: {
       type: String,
-      unique: true,
     },
   },
   {
     timestamps: true,
   }
-);   
+);
 
 var policyCarrierModel = mongoose.model("policyCarrier", policyCarrierSchema);
 exports.policyCarrierModel;

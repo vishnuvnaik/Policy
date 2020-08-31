@@ -4,7 +4,6 @@ const policyCategorySchema = mongoose.Schema(
   {
     category_name: {
       type: String,
-      unique: true,
     },
   },
   {

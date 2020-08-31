@@ -4,7 +4,6 @@ const userAccountSchema = mongoose.Schema(
   {
     account_name: {
       type: String,
-      unique: true,
     },
   },
   {

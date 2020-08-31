@@ -3,6 +3,7 @@ userAccount = require("../service/userAccount.js");
 user = require("../service/user");
 policyCarrier = require("../service/policyCarrier");
 policyCategory = require("../service/policyCategory");
+policyAdd = require("../service/addPolicy");
 policyInfo = require("../service/policyInfo");
 const userName = require("../model/user");
 let userModel = new userName();
@@ -10,6 +11,7 @@ var async = require("async");
 const policyinfo = require("../model/policyInfo");
 let policyinfoModel = new policyinfo();
 let agentService = new agent();
+let policyNew = new policyAdd();
 let userAccountService = new userAccount();
 let userService = new user();
 let policyCarrierService = new policyCarrier();
@@ -68,6 +70,15 @@ module.exports = class policy {
               if (worksheet.getRow(1).values[i] == "gender") {
                 newExcelDataDump.gender = row.values[i];
               }
+              if (worksheet.getRow(1).values[i] == "account_name") {
+                newExcelDataDump.account_name = row.values[i];
+              }
+              if (worksheet.getRow(1).values[i] == "phone") {
+                newExcelDataDump.phone_number = row.values[i];
+              }
+              if (worksheet.getRow(1).values[i] == "category_name") {
+                newExcelDataDump.policy_category = row.values[i];
+              }
             }
             ExcelDataArray.push(newExcelDataDump);
           }
@@ -81,22 +92,18 @@ module.exports = class policy {
             operations.push(
               (function (newExcelData) {
                 return function (cb) {
-                  agentService.addAgent(
-                    newExcelData,
-                    i,
-                    (err, result, index) => {
-                      if (err) {
-                        console.log(err);
-                      } else {
-                        responseArray.push({
-                          rowNumber: index,
-                          error: 0,
-                          data: result,
-                        });
-                        cb(null, { rowNumber: index, error: 0, data: result });
-                      }
+                  policyNew.policyAdd(newExcelData, i, (err, result, index) => {
+                    if (err) {
+                      console.log(err);
+                    } else {
+                      responseArray.push({
+                        rowNumber: index,
+                        error: 0,
+                        data: result,
+                      });
+                      cb(null, { rowNumber: index, error: 0, data: result });
                     }
-                  );
+                  });
                 };
               })(newExcelData)
             );
