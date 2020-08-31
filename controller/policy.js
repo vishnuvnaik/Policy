@@ -5,18 +5,30 @@ module.exports.policyInfo = (req, res) => {
   let response = {};
   let fileupload = req.file.path;
   // res.status(200).send({ data: fileupload });
-  policy
-    .policyInfo(fileupload)
-    .then((data) => {
+  policy.policyInfo(fileupload, (err, data) => {
+    if (err) {
+      response.data = err;
+      response.sucess = false;
+      res.status(500).send(response);
+    } else {
+      response.data = data;
+      //response.data = data;
       response.success = true;
-      response.message = "policy Data saved successfully";
-      res.status(200).send({ data: response });
-    })
-    .catch((err) => {
-      response.success = false;
-      response.message = err;
-      res.status(500).send({ data: response });
-    });
+      res.status(200).send(response);
+    }
+  });
+  // policy
+  //   .policyInfo(fileupload)
+  //   .then((data) => {
+  //     response.success = true;
+  //     response.message = "policy Data saved successfully";
+  //     res.status(200).send({ data: response });
+  //   })
+  //   .catch((err) => {
+  //     response.success = false;
+  //     response.message = err;
+  //     res.status(500).send({ data: response });
+  //   });
 };
 module.exports.searchPolicyInfo = (req, res) => {
   let response = {};

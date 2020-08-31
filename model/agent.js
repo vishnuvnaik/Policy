@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const agentSchema = mongoose.Schema(
   {
-    agent_name: {
+    agent: {
       type: String,
       unique: true,
     },

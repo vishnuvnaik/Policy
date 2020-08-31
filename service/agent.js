@@ -9,7 +9,8 @@ module.exports = class agentService {
       agentModel
         .create(req)
         .then((data) => {
-          resolve(data)
+          console.log(req.agent);
+          resolve(data);
         })
         .catch((err) => {
           return err;

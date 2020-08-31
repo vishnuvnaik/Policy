@@ -10,7 +10,7 @@ const policyCarrierSchema = mongoose.Schema(
   {
     timestamps: true,
   }
-);
+);   
 
 var policyCarrierModel = mongoose.model("policyCarrier", policyCarrierSchema);
 exports.policyCarrierModel;
